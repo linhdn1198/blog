@@ -35,7 +35,7 @@
                                     Posted by
     
                                     <div class="post__author-name fn">
-                                        <a href="#" class="post__author-link">{{$post->title}}</a>
+                                        <a href="#" class="post__author-link">{{$post->user->name}}</a>
                                     </div>
     
                                 </div>
@@ -45,7 +45,7 @@
                                     <i class="seoicon-clock"></i>
     
                                     <time class="published" datetime="{{$post->created_at->toFormattedDateString()}}">
-                                        {{$post->created_at->toFormattedDateString()}}
+                                        {{$post->created_at->format('d/m/Y')}}
                                     </time>
     
                                 </span>
@@ -105,7 +105,6 @@
                             </div>
                         </div>
                     </div>
-    
                     <div class="pagination-arrow">
                         @if ($next)    
                             <a href="{{route('post.single',['slug'=>$next->slug])}}" class="btn-prev-wrap">
@@ -114,7 +113,19 @@
                                 </svg>
                                 <div class="btn-content">
                                     <div class="btn-content-title">Previous Post</div>
-                                    <p class="btn-content-subtitle">{{$next->title}}</p>
+                                    <p class="btn-content-subtitle">
+                                        @php
+                                            $string = strip_tags($next->title);
+                                            if (strlen($string) > 10) {
+                                                $stringCut = substr($string, 0, 50);
+                                                $endPoint = strrpos($stringCut, ' ');
+                    
+                                                $string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                                $string .= '...';
+                                            }
+                                            echo $string;
+                                        @endphp 
+                                    </p>
                                 </div>
                             </a>
                         @endif
@@ -123,7 +134,19 @@
                             <a href="{{route('post.single',['slug'=>$prev->slug])}}" class="btn-next-wrap">
                                 <div class="btn-content">
                                     <div class="btn-content-title">Next Post</div>
-                                    <p class="btn-content-subtitle">{{$prev->title}}</p>
+                                    <p class="btn-content-subtitle">
+                                        @php
+                                            $string = strip_tags($prev->title);
+                                            if (strlen($string) > 10) {
+                                                $stringCut = substr($string, 0, 50);
+                                                $endPoint = strrpos($stringCut, ' ');
+                    
+                                                $string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                                $string .= '...';
+                                            }
+                                            echo $string;
+                                        @endphp 
+                                    </p>
                                 </div>
                                 <svg class="btn-next">
                                     <use xlink:href="#arrow-right"></use>

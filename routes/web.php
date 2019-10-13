@@ -47,6 +47,10 @@ Route::get('/home', [
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     
+    Route::post('users', 'HomeController@users')->name('users');
+
+    Route::get('users', 'HomeController@getUsers')->name('get-user');
+    
     Route::get('/post/index', [
         'uses' => 'PostsController@index',
         'as' => 'post.index'

@@ -42,8 +42,14 @@ class UsersController extends Controller
     {
         $this->validate($request,
                         [
-                            'name' => 'required',
-                            'email' => 'required|email'
+                            'name' => 'required | min:5',
+                            'email' => 'required| email'
+                        ],
+                        [
+                            'name.required' => 'Họ tên không được để trống.',
+                            'name.min' => 'Họ tên ít nhất phải có 5 ký tự.',
+                            'email.required' => 'Email không được để trống.',
+                            'email.email' => 'Email phải là địa chỉ email'
                         ]);
         
         $user = User::create([
@@ -56,7 +62,7 @@ class UsersController extends Controller
             'user_id' => $user->id,
         ]);
 
-        Session::flash('success','User added successfully!');
+        Session::flash('success','Thêm thành công!');
 
         return redirect()->route('user.create');
     }
@@ -104,10 +110,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-
-
+        
         $user->delete();
-        Session::flash('success','Successfully deleted user.');
+        Session::flash('success','Xóa thành công!');
         return redirect()->route('user.index');
     }
 
@@ -115,7 +120,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->admin = 1;
         $user->save();
-        Session::flash('success','Successfully changed user permissions!');
+        Session::flash('success','Thay đổi quyền thành công!');
         return redirect()->route('user.index');
     }
     
@@ -123,7 +128,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->admin = 0;
         $user->save();
-        Session::flash('success','Successfully changed user permissions!');
+        Session::flash('success','Thay đổi quyền thành công!');
         return redirect()->route('user.index');
     }
 }

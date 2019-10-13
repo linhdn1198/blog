@@ -1,27 +1,6 @@
 <footer class="footer" id="site-footer">
     <div class="container">
         <div class="row">
-            <div class="info">
-                <div class="col-lg-6 col-lg-offset-3">
-                    <div class="heading text-center">
-                        <h3 class="heading-title" >Seosight Company!</h3>
-                        <div class="heading-line">
-                            <span class="short-line"></span>
-                            <span class="long-line"></span>
-                        </div>
-                        <p class="heading-text">Qolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibham
-                            liber tempor cum soluta nobis eleifend option congue nihil uarta decima et quinta.
-                            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
-                            ut aliquip ex ea commodo consequat eleifend option nihil. Investigationes demonstraverunt
-                            lectores legere me lius quod ii legunt saepius parum claram.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
             <div class="contacts">
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                     <div class="contacts-item">
@@ -30,7 +9,6 @@
                         </div>
                         <div class="content">
                             <a href="#" class="title">{{$settings->contact_number}}</a>
-                            <p class="sub-title">Mon-Fri 9am-6pm</p>
                         </div>
                     </div>
                 </div>
@@ -42,7 +20,6 @@
                         </div>
                         <div class="content">
                             <a href="#" class="title">{{$settings->contact_email}}</a>
-                            <p class="sub-title">online support</p>
                         </div>
                     </div>
                 </div>
@@ -54,13 +31,10 @@
                         </div>
                         <div class="content">
                             <a href="#" class="title">{{$settings->address}}</a>
-                            <p class="sub-title">795 South Park Avenue</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </footer>

@@ -24,18 +24,18 @@
     @endif
 
     <div class="card">
-        <div class="card-header">Create new category</div>
+        <div class="card-header">Thêm mới danh mục</div>
             <div class="card-body">
                 <form action="{{route('category.store')}}" method="post">
                     @csrf
                     <div class="form-group">  
-                    <label for="title">Name</label>
-                    <input class="form-control" type="text" name="name" placeholder="">
+                    <label for="title">Tên danh mục</label>
+                    <input class="form-control" type="text" name="name" placeholder="Nhập tên danh mục">
                     </div>
 
-                    .<div class="form-group">
+                    <div class="form-group">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Store category</button>
+                            <button type="submit" class="btn btn-outline-success">Thêm mới</button>
                         </div>
                     </div>
                 </form>

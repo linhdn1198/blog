@@ -32,7 +32,7 @@ class PostsController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         if($categories->count() == 0 || $tags->count() == 0){
-            Session::flash('error', 'You must have some categories or tags before attempting to create a post.');
+            Session::flash('error', 'Bạn cần thêm mới danh mục và thẻ.');
             return redirect()->route('home');
         }
         return view('admin.posts.create')->with('categories',$categories)->with('tags',Tag::all());
@@ -54,7 +54,11 @@ class PostsController extends Controller
                     'tags' => 'required'
                 ],
                 [
-                    
+                    'title.required' => 'Tên tiêu đề không được để trống.',
+                    'title.min' => 'Tên tiêu đề ít nhất phải có 2 kí tự.',
+                    'featured.required' => 'Bạn hãy chọn ảnh cho bài viết.',
+                    'content.required' => 'Nội dung không được để trống.',
+                    'content.min' => 'Nội dung ít nhất phải có 5 kí tự.'
                 ]);
                     
         $post = new Post;
@@ -72,7 +76,7 @@ class PostsController extends Controller
 
         $post->tags()->attach($request->tags);
  
-        $request->session()->flash('success', 'You successfully created a post!');
+        $request->session()->flash('success', 'Thêm thành công!');
         return redirect()->route('post.create');
     }
 
@@ -120,7 +124,10 @@ class PostsController extends Controller
                             'content' => 'required|min:5'
                         ],
                         [
-                            
+                            'title.required' => 'Tên tiêu đề không được để trống.',
+                            'title.min' => 'Tên tiêu đề ít nhất phải có 2 kí tự.',
+                            'content.required' => 'Nội dung không được để trống.',
+                            'content.min' => 'Nội dung ít nhất phải có 5 kí tự.'
                         ]);
         $post = Post::withTrashed()->where('id',$id)->first();
         if ($request->hasFile('featured')) {
@@ -141,7 +148,7 @@ class PostsController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        Session::flash('success','You successfully updated the post!');
+        Session::flash('success','Cập nhật thành công!');
 
         return redirect()->route('post.edit',['id'=>$id]);
     }
@@ -156,7 +163,7 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        Session::flash('success','You successfully trashed the post!');
+        Session::flash('success','Xóa thành công!');
         return redirect()->route('post.index');
     }
 
@@ -171,7 +178,7 @@ class PostsController extends Controller
 
         $post->restore();
 
-        Session::flash('success', 'You successfully restored the post!');
+        Session::flash('success', 'Khôi phục thành công!');
         return redirect()->route('post.trash');
     }
 
@@ -180,7 +187,7 @@ class PostsController extends Controller
 
         $post->forceDelete();
 
-        Session::flash('success', 'You successfully delete the post!');
+        Session::flash('success', 'Xóa thành công!');
         return redirect()->route('post.trash');
     }
     

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-        <div class="card-header">Published tags</div>
+        <div class="card-header">Danh sách thẻ</div>
     
         <div class="card-body">
             @if (Session::has('success'))
@@ -15,12 +15,12 @@
             </div>
             @endif
             
-            <table class="table table-hover">
+            <table id="table" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Tag name</th>
-                        <th>Editing</th>
-                        <th>Deleting</th>
+                        <th>Tên thẻ</th>
+                        <th>Cập nhật</th>
+                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,20 +29,20 @@
                             <tr>
                                 <td>{{$tag->tag}}</td>
                                 <td>
-                                    <a class="btn btn-xs btn-primary" href="{{route('tag.edit',['id'=>$tag->id])}}">
-                                        Edit
+                                    <a class="btn btn-xs btn-outline-primary" href="{{route('tag.edit',['id'=>$tag->id])}}">
+                                        Cập nhật
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-xs btn-danger" href="{{route('tag.delete',['id'=>$tag->id])}}">
-                                        Delete
+                                    <a class="btn btn-xs btn-outline-danger" href="{{route('tag.delete',['id'=>$tag->id])}}">
+                                        Xóa
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                             <tr>
-                                <th colspan="3" class="text-center">No tag yet.</th>
+                                <th colspan="3" class="text-center">Không có thẻ nào.</th>
                             </tr>
                     @endif
                 </tbody>

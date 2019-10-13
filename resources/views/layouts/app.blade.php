@@ -15,13 +15,15 @@
     <link href="{{asset('css/toastr.css')}}" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
     @yield('style')
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -31,9 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -43,7 +43,7 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a>
                                 </li>
                             @endif
                         @else
@@ -56,7 +56,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Đăng xuất') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -75,22 +75,21 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <ul class="list-group">
-                            <li class="list-group-item"><a href="{{route('home')}}">Home</a></li>
-                            <li class="list-group-item"><a href="{{route('category.index')}}">Categories</a></li>
-                            <li class="list-group-item"><a href="{{route('tag.index')}}">Tags</a></li>
-
+                            <li class="list-group-item"><a href="{{route('home')}}">Trang chủ</a></li>
+                            <li class="list-group-item"><a href="{{route('category.index')}}">Danh mục bài viết</a></li>
+                            <li class="list-group-item"><a href="{{route('category.create')}}">Thêm danh mục bài viết</a></li>
+                            <li class="list-group-item"><a href="{{route('tag.index')}}">Danh sách thẻ</a></li>
+                            <li class="list-group-item"><a href="{{route('tag.create')}}">Thêm mới thẻ</a></li>
+                            <li class="list-group-item"><a href="{{route('post.index')}}">Danh sách bài viết</a></li>
+                            <li class="list-group-item"><a href="{{route('post.trash')}}">Danh sách bài viết đã xóa</a></li>
+                            <li class="list-group-item"><a href="{{route('post.create')}}">Thêm mới bài viết</a></li>
                             @if (Auth::user()->admin)
-                                <li class="list-group-item"><a href="{{route('user.index')}}">Users</a></li>
-                                <li class="list-group-item"><a href="{{route('user.create')}}">New user</a></li>
+                                <li class="list-group-item"><a href="{{route('user.index')}}">Danh sách người dùng</a></li>
+                                <li class="list-group-item"><a href="{{route('user.create')}}">Thêm mới người dùng</a></li>
                             @endif
-                            <li class="list-group-item"><a href="{{route('user.profile')}}">My profile</a></li>
-                            <li class="list-group-item"><a href="{{route('tag.create')}}">Create tag</a></li>
-                            <li class="list-group-item"><a href="{{route('post.index')}}">All posts</a></li>
-                            <li class="list-group-item"><a href="{{route('post.trash')}}">All trashed posts</a></li>
-                            <li class="list-group-item"><a href="{{route('category.create')}}">Create new category</a></li>
-                            <li class="list-group-item"><a href="{{route('post.create')}}">Create new post</a></li>
+                            <li class="list-group-item"><a href="{{route('user.profile')}}">Thông tin cá nhân</a></li>
                             @if (Auth::user()->admin)
-                                <li class="list-group-item"><a href="{{route('settings')}}">Settings</a></li>
+                                <li class="list-group-item"><a href="{{route('settings')}}">Cấu hình</a></li>
                             @endif
                         </ul>
                     </div>
@@ -102,17 +101,30 @@
             </div>
         </main>
     </div>
-    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" ></script>
-    <script src="{{asset('js/toastr.js')}}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/daterangepicker.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
     <script>
-        @if(Session::has('success'))
-            toastr.success("{{Session::get('success')}}")
-        @endif
-
-        @if(Session::has('info'))
-            toastr.success("{{Session::get('info')}}")
-        @endif
+        $(document).ready(function(){
+            $('#table').DataTable({
+            "language": {
+                "search": "Tìm kiếm:",
+                "paginate": {
+                "sFirst": "Trang đầu",
+                "sLast": "Trang cuối",
+                "sNext": "Trang sau" ,
+                "sPrevious": "Trang trước",          
+                },
+                "zeroRecords": "Không tìm thấy dữ liệu",
+                "info": "Hiển thị từ _START_ tới _END_ của _TOTAL_ bản ghi",
+                "lengthMenu": "Hiện _MENU_ bản ghi",         
+            },
+            "bInfo" : false,
+            });
+        });	
     </script>
     @yield('script')
 </body>

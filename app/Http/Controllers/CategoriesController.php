@@ -41,11 +41,15 @@ class CategoriesController extends Controller
         $this->validate($request,
                         [
                             'name' => 'required|min:2'
+                        ], 
+                        [
+                            'name.required' => 'Tên danh mục không được để trống.',
+                            'name.min' => 'Tên danh mục ít nhất phải có 2 kí tự.'
                         ]);
         $category = new Category;
         $category->name = $request->name;
         $category->save();
-        Session::flash('success','You successfully created a category!');
+        Session::flash('success','Thêm thành công!');
         return redirect()->route('category.create');
     }
 
@@ -82,10 +86,19 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,
+                        [
+                            'name' => 'required|min:2'
+                        ], 
+                        [
+                            'name.required' => 'Tên danh mục không được để trống.',
+                            'name.min' => 'Tên danh mục ít nhất phải có 2 kí tự.'
+                        ]);
+                        
         $category = Category::find($id);
         $category->name = $request->name;
         $category->save();
-        Session::flash('success','You successfully updated the category!');
+        Session::flash('success','Cập nhật thành công!');
         return redirect()->route('category.edit',['id'=>$id]);
     }
 
@@ -102,9 +115,8 @@ class CategoriesController extends Controller
         foreach ($category->post as $p) {
             $p->delete();
         }
-        
         $category->delete();
-        Session::flash('success','You successfully delete the category!');
+        Session::flash('success','Xóa thành công!');
         return redirect()->route('category.index');;
     }
 }

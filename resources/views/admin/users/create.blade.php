@@ -22,25 +22,30 @@
         </div>
     @endif
     <div class="card">
-        <div class="card-header">Create new user</div>
+        <div class="card-header">Thêm mới người dùng</div>
             <div class="card-body">
                 <form action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">  
-                        <label for="title">Name</label>
-                        <input class="form-control" type="text" name="name" placeholder="">
+                        <label for="name">Họ tên</label>
+                        <input class="form-control" type="text" name="name" placeholder="Nhập họ tên">
                     </div>
 
                     <div class="form-group">  
-                        <label for="content">E-mail</label>
-                        <input class="form-control" type="text" name="email" placeholder="">
+                        <label for="email">E-mail</label>
+                        <input class="form-control" type="email" name="email" placeholder="Nhập địa chỉ email">
                     </div>
 
-                    .<div class="form-group">
+                    <div class="form-group">  
+                        <label class="text-danger">Mật khẩu mặc định là secret</label>
+                    </div>
+
+                    <div class="form-group">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Store user</button>
+                            <button type="submit" class="btn btn-outline-success">Thêm mới</button>
                         </div>
                     </div>
+
                 </form>
             </div>
     </div>

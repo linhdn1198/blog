@@ -24,18 +24,18 @@
     @endif
 
     <div class="card">
-        <div class="card-header">Create new tag</div>
+        <div class="card-header">Thêm mới thẻ</div>
             <div class="card-body">
                 <form action="{{route('tag.store')}}" method="post">
                     @csrf
                     <div class="form-group">  
-                    <label for="title">Tag name</label>
+                    <label for="title">Tên thẻ</label>
                     <input class="form-control" type="text" name="tag" placeholder="">
                     </div>
 
-                    .<div class="form-group">
+                    <div class="form-group">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Store tag</button>
+                            <button type="submit" class="btn btn-outline-success">Thêm mới</button>
                         </div>
                     </div>
                 </form>

@@ -106,7 +106,7 @@ class ProfilesController extends Controller
             $user->save();
         }
 
-        Session::flash('success','Account profile updated.');
+        Session::flash('success','Cập nhật thành công');
 
         return redirect()->route('user.profile');
     }

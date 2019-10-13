@@ -66,6 +66,10 @@ trait AuthenticatesUsers
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
+        ],
+        [
+            'email.required' => 'Email không được để trống.',
+            'password.required' => 'Mật khẩu không được để trống.'
         ]);
     }
 

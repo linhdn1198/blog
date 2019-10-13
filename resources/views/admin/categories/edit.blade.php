@@ -23,18 +23,18 @@
         </div>
     @endif
     <div class="card">
-        <div class="card-header">Update category</div>
+        <div class="card-header">Cập nhật danh mục</div>
             <div class="card-body">
                 <form action="{{route('category.update',['id'=>$category])}}" method="post">
                     @csrf
                     <div class="form-group">  
-                    <label for="title">Name</label>
-                    <input class="form-control" type="text" name="name" placeholder="" value="{{$category->name}}">
+                    <label for="title">Tên danh mục</label>
+                    <input class="form-control" type="text" name="name" placeholder="Nhập tên danh mục" value="{{$category->name}}">
                     </div>
 
-                    .<div class="form-group">
+                    <div class="form-group">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Update category</button>
+                            <button type="submit" class="btn btn-outline-success">Cập nhật</button>
                         </div>
                     </div>
                 </form>

@@ -22,12 +22,12 @@
         </div>
     @endif
     <div class="card">
-        <div class="card-header">Create new post</div>
+        <div class="card-header">Thêm mới bài viết</div>
             <div class="card-body">
                 <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">  
-                        <label for="category_id">Category</label>
+                        <label for="category_id">Danh mục bài viết</label>
                         <select class="form-control" name="category_id">
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -36,17 +36,17 @@
                     </div>
 
                     <div class="form-group">  
-                        <label for="title">Title</label>
-                        <input class="form-control" type="text" name="title" placeholder="">
+                        <label for="title">Tiêu đề</label>
+                        <input class="form-control" type="text" name="title" placeholder="Nhập tiêu đề bài viết">
                     </div>
 
                     <div class="form-group">
-                        <label for="featured">Featured image</label>
+                        <label for="featured">Hình ảnh</label>
                         <input class="form-control" type="file" name="featured" placeholder="">
                     </div>
 
                     <div class="form-group">
-                        <label for="tags">Selected tags</label>
+                        <label for="tags">Chọn thẻ</label>
                         @foreach ($tags as $tag)
                             <div class="check-box">
                                 <label><input type="checkbox" name="tags[]" value="{{$tag->id}}">  {{$tag->tag}}</label>
@@ -55,13 +55,13 @@
                     </div>
 
                     <div class="form-group">  
-                        <label for="content">Content</label>
+                        <label for="content">Nội dung</label>
                         <textarea class="form-control" name="content" id="summernote" cols="30" rows="5"></textarea>
                     </div>
 
                     .<div class="form-group">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Store post</button>
+                            <button type="submit" class="btn btn-outline-success">Thêm mới</button>
                         </div>
                     </div>
                 </form>
@@ -75,7 +75,7 @@
     <script>
         $(document).ready(function() {
             $('#summernote').summernote({
-                placeholder: 'Content post...',
+                placeholder: 'Nhập nội dung bài viết...',
                 tabsize: 2,
                 height: 200
             });

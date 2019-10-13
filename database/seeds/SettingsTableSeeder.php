@@ -12,8 +12,8 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         App\Setting::create([
-            'site_name' => "Laravel's Blog",
-            'address' => 'HN',
+            'site_name' => "Blog Edu",
+            'address' => 'Hanoi',
             'contact_number' => '0368 616 260',
             'contact_email' => 'linhdn1198@gmail.com'
         ]);

@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
         <div class="card-header">
-            Published posts
+            Danh sách bài viết
         </div>
     
         <div class="card-body">
@@ -16,31 +16,33 @@
                 <strong>{{Session::get('success')}}</strong> 
             </div>
             @endif
-            <table class="table table-hover">
+            <table id="table" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Featured image</th>
-                        <th>Title</th>
-                        <th>Deleting</th>
+                        <th>Hình ảnh</th>
+                        <th>Nội dung</th>
+                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if ($posts->count() > 0)
                         @foreach ($posts as $post)
                         <tr>
-                            
-                            <td><img class="img-fluid rounded-circle" src="{{$post->featured}}" alt="{{$post->title}}" width="180px" height="100px"></td>
-                            <td>{{$post->title}}</td>
+                            <th>
+                                <img class="img-fluid" src="{{$post->featured}}" alt="{{$post->title}}">
+                                {{$post->title}}
+                            </th>
+                            <td>{!! $post->content !!}</td>
                             <td>
-                                <a class="btn btn-xs btn-danger" href="{{route('post.delete',['id'=>$post->id])}}">
-                                    Trash
+                                <a class="btn btn-xs btn-outline-danger" href="{{route('post.delete',['id'=>$post->id])}}">
+                                    Xóa
                                 </a>
                             </td>
                         </tr>
                         @endforeach
                     @else
                         <tr>
-                            <th colspan="5" class="text-center">No item posts.</th>
+                            <th colspan="5" class="text-center">Không có bài viết nào.</th>
                         </tr>
                     @endif
                 </tbody>

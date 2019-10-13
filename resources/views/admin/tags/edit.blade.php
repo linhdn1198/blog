@@ -24,18 +24,18 @@
     @endif
 
     <div class="card">
-        <div class="card-header">Update tag</div>
+        <div class="card-header">Cập nhật thẻ</div>
             <div class="card-body">
                 <form action="{{route('tag.update',['id'=>$tag->id])}}" method="post">
                     @csrf
                     <div class="form-group">  
-                    <label for="title">Tag name</label>
+                    <label for="title">Tên thẻ</label>
                     <input class="form-control" type="text" name="tag" placeholder="" value="{{$tag->tag}}">
                     </div>
 
-                    .<div class="form-group">
+                    <div class="form-group">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Update tag</button>
+                            <button type="submit" class="btn btn-outline-success">Cập nhật</button>
                         </div>
                     </div>
                 </form>

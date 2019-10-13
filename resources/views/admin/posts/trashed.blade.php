@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-        <div class="card-header">Trashed posts</div>
+        <div class="card-header">Danh sách bài viết đã xóa</div>
     
         <div class="card-body">
             @if (Session::has('success'))
@@ -15,43 +15,45 @@
                 </div>
             @endif
 
-            <table class="table table-border table-hover">
+            <table id="table" class="table table-border table-hover">
                 <thead>
                     <tr>
-                        <th>Featured image</th>
-                        <th>Title</th>
-                        <th>Editing</th>
-                        <th>Restore</th>
-                        <th>Deleting</th>
+                        <th>Hình</th>
+                        <th>Tiêu đề</th>
+                        <th>Nội dung</th>
+                        <th>Cập nhật</th>
+                        <th>Khôi phục</th>
+                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if ($posts->count() > 0)
                         @foreach ($posts as $post)
-                            <tr>
-                                
-                                <td><img src="{{$post->featured}}" alt="{{$post->title}}" width="180px" height="100px"></td>
-                                <td>{{$post->title}}</td>
+                            <tr>      
+                                <th>
+                                    <img class="img-fluid" src="{{$post->featured}}" alt="{{$post->title}}">
+                                    {{$post->title}}
+                                </th>
                                 <td>
-                                    <a class="btn btn-xs btn-primary" href="{{route('post.edit',['id'=>$post->id])}}">
-                                        Edit
+                                    <a class="btn btn-xs btn-outline-primary" href="{{route('post.edit',['id'=>$post->id])}}">
+                                        Cập nhật
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-xs btn-success" href="{{route('post.restore',['id'=>$post->id])}}">
-                                        Restore
+                                    <a class="btn btn-xs btn-outline-success" href="{{route('post.restore',['id'=>$post->id])}}">
+                                        Khôi phục
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-xs btn-danger" href="{{route('post.kill',['id'=>$post->id])}}">
-                                        Delete
+                                    <a class="btn btn-xs btn-outline-danger" href="{{route('post.kill',['id'=>$post->id])}}">
+                                        Xóa
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                             <tr>
-                                <th colspan="5" class="text-center">No published posts</th>
+                                <th colspan="5" class="text-center">Không có bài viết nào</th>
                             </tr>
                     @endif
 

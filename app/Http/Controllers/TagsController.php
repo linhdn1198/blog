@@ -39,12 +39,15 @@ class TagsController extends Controller
         $this->validate($request,
                         [
                             'tag' => 'required'
+                        ],
+                        [
+                            'tag.required' => 'Tên thẻ không được để trống.'
                         ]);
         Tag::create([
             'tag' => $request->tag
         ]);
 
-        Session::flash('success','Tag successfully.');
+        Session::flash('success','Thêm thành công.');
 
         return redirect()->route('tag.create');
     }
@@ -85,11 +88,13 @@ class TagsController extends Controller
         $this->validate($request,
                         [
                             'tag' => 'required'
+                        ],                        [
+                            'tag.required' => 'Tên thẻ không được để trống.'
                         ]);
         $tag = Tag::find($id);
         $tag->tag = $request->tag;
         $tag->save();
-        Session::flash('success','Tag updated!');
+        Session::flash('success','Cập nhật thành công!');
         return redirect()->route('tag.edit',['id'=>$id]);
     }
 
@@ -103,7 +108,7 @@ class TagsController extends Controller
     {
         $tag = Tag::find($id);
         $tag->delete();
-        Session::flash('success','Tag deleted.');
+        Session::flash('success','Xóa thành công.');
         return redirect()->route('tag.index');
     }
 }

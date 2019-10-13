@@ -12,7 +12,7 @@
                         <a href="{{$first_post->featured}}" class="link-image js-zoom-image">
                             <i class="seoicon-zoom"></i>
                         </a>
-                        <a href="#" class="link-post">
+                        <a href="{{route('post.single',['slug'=>$first_post->slug])}}" class="link-post">
                             <i class="seoicon-link-bold"></i>
                         </a>
                     </div>
@@ -32,20 +32,14 @@
                                         <i class="seoicon-clock"></i>
 
                                         <time class="published" datetime="{{$first_post->created_at->toFormattedDateString()}}">
-                                            {{$first_post->created_at->toFormattedDateString()}}
+                                            {{$first_post->created_at->format('d/m/Y')}}
                                         </time>
 
                                     </span>
-                                    
-                                    
+                            
                                     <span class="category">
                                         <i class="seoicon-tags"></i>
                                         <a href="{{route('category.single',['slug'=>$first_post->category->id])}}">{{$first_post->category->name}}</a>
-                                    </span>
-
-                                    <span class="post__comments">
-                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-                                        6
                                     </span>
                                 </div>
                         </div>
@@ -66,7 +60,7 @@
                         <a href="{{$second_post->featured}}" class="link-image js-zoom-image">
                             <i class="seoicon-zoom"></i>
                         </a>
-                        <a href="#" class="link-post">
+                        <a href="{{route('post.single',['slug'=>$second_post->slug])}}" class="link-post">
                             <i class="seoicon-link-bold"></i>
                         </a>
                     </div>
@@ -86,18 +80,13 @@
                                         <i class="seoicon-clock"></i>
 
                                         <time class="published" datetime="{{$second_post->created_at->toFormattedDateString()}}">
-                                            {{$second_post->created_at->toFormattedDateString()}}
+                                            {{$second_post->created_at->format('d/m/Y')}}
                                         </time>
 
                                     </span>
                                     <span class="category">
                                         <i class="seoicon-tags"></i>
                                         <a href="{{route('category.single',['slug'=>$second_post->category->id])}}">{{$second_post->category->name}}</a>
-                                    </span>
-
-                                    <span class="post__comments">
-                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-                                        6
                                     </span>
                                 </div>
                         </div>
@@ -114,7 +103,7 @@
                         <a href="{{$third_post->featured}}" class="link-image js-zoom-image">
                             <i class="seoicon-zoom"></i>
                         </a>
-                        <a href="#" class="link-post">
+                        <a href="{{route('post.single',['slug'=>$third_post->slug])}}" class="link-post">
                             <i class="seoicon-link-bold"></i>
                         </a>
                     </div>
@@ -134,7 +123,7 @@
                                         <i class="seoicon-clock"></i>
 
                                         <time class="published" datetime="{{$third_post->created_at->toFormattedDateString()}}">
-                                            {{$third_post->created_at->toFormattedDateString()}}
+                                            {{$third_post->created_at->format('d/m/Y')}}
                                         </time>
 
                                     </span>
@@ -142,15 +131,9 @@
                                         <i class="seoicon-tags"></i>
                                         <a href="{{route('category.single',['slug'=>$third_post->category->id])}}">{{$third_post->category->name}}</a>
                                     </span>
-
-                                    <span class="post__comments">
-                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
-                                        6
-                                    </span>
                                 </div>
                         </div>
                     </div>
-
             </article>
         </div>
     </div>
@@ -191,7 +174,6 @@
                 </div>
                 <div class="padded-50"></div>
                 @endforeach
-
             </div>
         </div>
     </div>

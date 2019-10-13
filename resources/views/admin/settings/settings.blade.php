@@ -22,33 +22,33 @@
         </div>
     @endif
     <div class="card">
-        <div class="card-header">Edit blog settings</div>
+        <div class="card-header">Cập nhật cấu hình website</div>
             <div class="card-body">
                 <form action="{{route('settings.update')}}" method="post" >
                     @csrf
                     <div class="form-group">  
-                        <label for="name">Site name</label>
+                        <label for="name">Tên blog</label>
                         <input class="form-control" type="text" name="site_name" placeholder="" value="{{$settings->site_name}}">
                     </div>
 
                     <div class="form-group">  
-                        <label for="contact_number">Contact phone</label>
+                        <label for="contact_number">Địa thoại liên hệ</label>
                         <input class="form-control" type="text" name="contact_number" placeholder="" value="{{$settings->contact_number}}">
                     </div>
 
                     <div class="form-group">  
-                        <label for="contact_email">Contact email</label>
+                        <label for="contact_email">Email liên hệ</label>
                         <input class="form-control" type="text" name="contact_email" placeholder="" value="{{$settings->contact_email}}">
                     </div>
 
                     <div class="form-group">  
-                        <label for="adress">Adress</label>
+                        <label for="adress">Địa chỉ</label>
                         <input class="form-control" type="text" name="address" placeholder="" value="{{$settings->address}}">
                     </div>
 
                     <div class="form-group">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Update site settings</button>
+                            <button type="submit" class="btn btn-outline-success">Cập nhật</button>
                         </div>
                     </div>
                 </form>

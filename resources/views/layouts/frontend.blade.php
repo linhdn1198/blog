@@ -38,23 +38,16 @@
 </head>
 
 
-<body class=" ">
+<body class="">
 
 <div class="content-wrapper">
     
-    @include('includes.header');
+    @include('includes.header')
 
     <div class="header-spacer"></div>
 
     @yield('content')
 
-<!-- Subscribe Form -->
-
-<div class="container-fluid bg-green-color">
-    @include('includes.subcribe_form')
-</div>
-
-<!-- End Subscribe Form -->
 </div>
 
 
@@ -62,7 +55,7 @@
 <!-- Footer -->
 
 <footer class="footer" id="site-footer">
-    @include('includes.footer');
+    @include('includes.footer')
 </footer>
 
 <!-- End Footer -->
